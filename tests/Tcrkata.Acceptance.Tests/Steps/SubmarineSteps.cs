@@ -33,14 +33,14 @@ public class SubmarineSteps
     public void SendCommand(string command) => this.driver.SendCommand(command);
 
     [When(@"submarine receives all commands from file (.*)")]
-    public void WhenSubmarineReceivesAllCommandsFromInputFile(string filename)
+    public void SendCommands(string filename)
     {
         IEnumerable<string> lines = File.ReadLines(string.Concat(Directory.GetCurrentDirectory(), filename));
         lines.ToList().ForEach(this.driver.SendCommand);
     }
 
     [Then(@"submarine final value should match value from file (.*)")]
-    public void ThenSubmarineFinalValueShouldMatchValueFromInputFile(string filename)
+    public void VerifySubmarineFinalValueFromFile(string filename)
     {
         string finalValue = File.ReadLines(string.Concat(Directory.GetCurrentDirectory(), filename)).First();
         this.driver.GetFinalValue().Should().Be(int.Parse(finalValue));
