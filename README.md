@@ -59,13 +59,17 @@ After following these instructions, you would have a horizontal position of `15`
 The goal of the kata is to make all acceptance tests pass following Test-Driven Development and using the TCR Utility
 Tool.
 
+### Important
+
+Create a branch of your own so you don't push all your commits on the main branch!
+
 ### Rules
 
 - Follow the Test-Driven Development approach.
 - Use the TCR Utility Tool with the according mode (Driver|Navigator)
   - Here's the command line to use :
 ```shell
-tcr -p -t xunit
+tcrw -p -t xunit
 ```
 - `ISubmarine` interface cannot be changed.
 - `Submarine` component should have an empty constructor.
