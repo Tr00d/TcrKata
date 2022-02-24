@@ -7,7 +7,7 @@ public class Submarine : ISubmarine
         string[] parameters = command.Split(' ');
         string commandName = parameters[0];
         int value = int.Parse(parameters[1]);
-        if (command.Equals("up 1"))
+        if (commandName == "up" && value == 1)
         {
             this.Aim -= 1;
             return;
