@@ -58,4 +58,18 @@ public class SubmarineTest
         this.submarine.ExecuteCommand($"{command} {aim}");
         this.submarine.Aim.Should().Be(initialValue - aim);
     }
+
+    [Fact]
+    public void ExecuteCommand_ShouldIncreasePositionAndDepth_GivenCommandIsForward()
+    {
+        // Arrange
+        this.submarine.ExecuteCommand($"down 2");
+
+        // Act
+        this.submarine.ExecuteCommand($"forward 15");
+        
+        // Assert
+        this.submarine.Position.Should().Be(15);
+        this.submarine.Depth.Should().Be(30);
+    }
 }
