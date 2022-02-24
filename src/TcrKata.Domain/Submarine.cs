@@ -17,7 +17,7 @@ public class Submarine : ISubmarine
                 break;
             case "forward":
                 this.Position += value;
-                this.Depth = 30;
+                this.Depth += value * this.Aim;
                 break;
         }
     }
