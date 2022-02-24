@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using FluentAssertions;
 using Xunit;
@@ -41,12 +42,19 @@ public class SubmarineTest
     [Theory]
     [InlineData("down", 1)]
     [InlineData("down", 2)]
-    public void ExecuteCommand_ShouldUpdateAim_GivenCommandIsDownOrUp(string command, int aim)
+    public void ExecuteCommand_ShouldIncreaseAim_GivenCommandIsDown(string command, int aim)
     {
         int initialValue = this.submarine.Aim;
         this.submarine.ExecuteCommand($"{command} {aim}");
         this.submarine.Aim.Should().Be(initialValue + aim);
     }
     
-    
+    [Theory]
+    [InlineData("up", 1)]
+    public void ExecuteCommand_ShouldDecreaseAim_GivenCommandIsUp(string command, int aim)
+    {
+        int initialValue = this.submarine.Aim;
+        this.submarine.ExecuteCommand($"{command} {aim}");
+        this.submarine.Aim.Should().Be(initialValue - aim);
+    }
 }

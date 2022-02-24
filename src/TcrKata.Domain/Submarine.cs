@@ -4,6 +4,12 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
+        if (command.Equals("up 1"))
+        {
+            this.Aim -= 1;
+            return;
+        }
+        
         if (command.Equals("down 1"))
         {
             this.Aim += 1;
