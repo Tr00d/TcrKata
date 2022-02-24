@@ -7,14 +7,6 @@ public class Submarine : ISubmarine
         string[] parameters = command.Split(' ');
         string commandName = parameters[0];
         int value = int.Parse(parameters[1]);
-
-        if (commandName == "forward")
-        {
-            this.Position = 15;
-            this.Depth = 30;
-            return;
-        }
-        
         switch (commandName)
         {
             case "up":
@@ -22,6 +14,10 @@ public class Submarine : ISubmarine
                 break;
             case "down":
                 this.Aim += value;
+                break;
+            case "forward":
+                this.Position = 15;
+                this.Depth = 30;
                 break;
         }
     }
