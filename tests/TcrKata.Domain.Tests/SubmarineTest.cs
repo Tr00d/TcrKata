@@ -41,7 +41,7 @@ public class SubmarineTest
     [Theory]
     [InlineData("down", 1)]
     [InlineData("down", 2)]
-    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne(string command, int aim)
+    public void ExecuteCommand_ShouldUpdateAim_GivenCommandIsDownOrUp(string command, int aim)
     {
         int initialValue = this.submarine.Aim;
         this.submarine.ExecuteCommand($"{command} {aim}");
