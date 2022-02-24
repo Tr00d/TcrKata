@@ -39,12 +39,14 @@ public class SubmarineTest
     }
 
     [Theory]
-    [InlineData(1)]
-    [InlineData(2)]
-    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne(int aim)
+    [InlineData("down", 1)]
+    [InlineData("down", 2)]
+    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne(string command, int aim)
     {
         int initialValue = this.submarine.Aim;
-        this.submarine.ExecuteCommand($"down {aim}");
+        this.submarine.ExecuteCommand($"{command} {aim}");
         this.submarine.Aim.Should().Be(initialValue + aim);
     }
+    
+    
 }
