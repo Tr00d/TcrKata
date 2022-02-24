@@ -19,8 +19,8 @@ public class SubmarineTest
     }
 
     [Fact]
-    public void Blablabla()
+    public void Aim_ShouldReturnZero_GivenSubmarineIsInitialPosition()
     {
-        
+        this.submarine.Aim.Should().Be(0);
     }
 }
