@@ -51,6 +51,7 @@ public class SubmarineTest
     
     [Theory]
     [InlineData("up", 1)]
+    [InlineData("up", 2)]
     public void ExecuteCommand_ShouldDecreaseAim_GivenCommandIsUp(string command, int aim)
     {
         int initialValue = this.submarine.Aim;

@@ -10,6 +10,12 @@ public class Submarine : ISubmarine
             return;
         }
         
+        if (command.Equals("up 2"))
+        {
+            this.Aim -= 2;
+            return;
+        }
+        
         if (command.Equals("down 1"))
         {
             this.Aim += 1;
