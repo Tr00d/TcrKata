@@ -36,4 +36,12 @@ public class SubmarineTest
     {
         this.submarine.Depth.Should().Be(0);
     }
+
+    [Fact]
+    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne()
+    {
+        int initialValue = this.submarine.Aim;
+        this.submarine.ExecuteCommand("down 1");
+        this.submarine.Aim.Should().Be(initialValue + 1);
+    }
 }
