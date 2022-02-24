@@ -19,8 +19,8 @@ public class SubmarineTest
     }
 
     [Fact]
-    public void Aim_ShouldReturnZero()
+    public void Blablabla()
     {
-        this.submarine.Aim.Should().Be(0);
+        
     }
 }
