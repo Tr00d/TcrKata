@@ -4,6 +4,9 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
+        string[] parameters = command.Split(' ');
+        string commandName = parameters[0];
+        int value = int.Parse(parameters[1]);
         if (command.Equals("up 1"))
         {
             this.Aim -= 1;
