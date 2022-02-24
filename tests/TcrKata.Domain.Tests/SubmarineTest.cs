@@ -17,4 +17,10 @@ public class SubmarineTest
     {
         this.submarine.Should().NotBeNull();
     }
+
+    [Fact]
+    public void Aim_ShouldReturnZero()
+    {
+        this.submarine.Aim.Should().Be(0);
+    }
 }
