@@ -9,6 +9,6 @@ public class Submarine : ISubmarine
 
     public int Aim { get; } = 0;
 
-    public int Position => 0;
-    public int Depth => 0;
+    public int Position { get; } = 0;
+    public int Depth { get; } = 0;
 }
