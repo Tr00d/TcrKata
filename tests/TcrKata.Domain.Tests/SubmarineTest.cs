@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using FluentAssertions;
 using Xunit;
 
@@ -37,11 +38,12 @@ public class SubmarineTest
         this.submarine.Depth.Should().Be(0);
     }
 
-    [Fact]
-    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne()
+    [Theory]
+    [InlineData(1)]
+    public void ExecuteCommand_ShouldIncreaseAimByOne_GivenCommandIsDownOne(int aim)
     {
         int initialValue = this.submarine.Aim;
-        this.submarine.ExecuteCommand("down 1");
-        this.submarine.Aim.Should().Be(initialValue + 1);
+        this.submarine.ExecuteCommand($"down {aim}");
+        this.submarine.Aim.Should().Be(initialValue + aim);
     }
 }
