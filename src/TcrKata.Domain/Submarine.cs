@@ -13,15 +13,9 @@ public class Submarine : ISubmarine
             return;
         }
         
-        if (commandName == "down" && value == 1)
+        if (commandName == "down")
         {
-            this.Aim += 1;
-            return;
-        }
-        
-        if (commandName == "down" && value == 2)
-        {
-            this.Aim += 2;
+            this.Aim += value;
             return;
         }
         
