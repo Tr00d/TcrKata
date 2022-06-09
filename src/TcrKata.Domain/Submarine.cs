@@ -6,6 +6,7 @@ public class Submarine : ISubmarine
     {
         if (command == "up")
         {
+            this.Aim = 0;
             this.Aim = 1;
             return;
         }
