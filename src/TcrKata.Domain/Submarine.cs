@@ -4,12 +4,10 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
-        
         if (command == "up")
         {
             this.Aim = 1;
             return;
-            
         }
         
         throw new NotImplementedException();
