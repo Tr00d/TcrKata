@@ -1,3 +1,5 @@
+
+using System.Threading;
 using FluentAssertions;
 using Xunit;
 
@@ -13,8 +15,9 @@ public class SubmarineTest
     }
 
     [Fact]
-    public void SomeFakeTest()
+    public void ExecuteCommand_ShouldAimTo1_GIvenCommandIsUp()
     {
-        this.submarine.Should().NotBeNull();
+        this.submarine.ExecuteCommand("up");
+        this.submarine.Aim.Should().Be(1);
     }
 }
