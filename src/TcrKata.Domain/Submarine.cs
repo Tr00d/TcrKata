@@ -4,6 +4,7 @@ public class Submarine : ISubmarine
 {
     public void ExecuteCommand(string command)
     {
+        Console.Write("You were the chosen one");
         throw new NotImplementedException();
     }
 
