@@ -1,39 +1,23 @@
+using System.Runtime.CompilerServices;
+
 namespace TcrKata.Domain;
 
 public class Submarine : ISubmarine
 {
-    public void ExecuteCommand(string command)
-    {
-        var commandParts = command.Split(' ');
-        var commandType = commandParts[0];
-        var commandValue = int.Parse(commandParts[1]);
-        
-        if (IsDownCommand(commandType))
-        {
-            Aim += commandValue;
-        }
-        else if (IsForwardCommand(commandType))
-        {
-            Position += commandValue;
-            Depth += Aim * commandValue;
-        }
-        else
-        {
-            Aim -= commandValue;    
-        }
-    }
+    private SubmarineState state;
+    private readonly CommandFactory factory;
 
-    private static bool IsForwardCommand(string commandType)
+    public Submarine()
     {
-        return commandType.Equals("forward");
+        this.state = new SubmarineState(default, default, default);
+        this.factory = new CommandFactory();
     }
+    
+    public void ExecuteCommand(string command) => this.state = this.factory
+        .Parse(command)
+        .TransformState(this.state);
 
-    private static bool IsDownCommand(string commandType)
-    {
-        return commandType.Equals("down");
-    }
-
-    public int Aim { get; private set; }
-    public int Position { get; private set; }
-    public int Depth { get; private set; }
+    public int Aim => this.state.Aim;
+    public int Position => this.state.Position;
+    public int Depth => this.state.Depth;
 }
