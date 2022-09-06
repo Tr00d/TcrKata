@@ -7,6 +7,7 @@ public class Submarine : ISubmarine
         var commandParts = command.Split(' ');
         var commandType = commandParts[0];
         var commandValue = int.Parse(commandParts[1]);
+        
         if (IsDownCommand(commandType))
         {
             Aim += commandValue;
@@ -14,6 +15,7 @@ public class Submarine : ISubmarine
         else if (IsForwardCommand(commandType))
         {
             Position += commandValue;
+            Depth += Aim * commandValue;
         }
         else
         {
@@ -33,5 +35,5 @@ public class Submarine : ISubmarine
 
     public int Aim { get; private set; }
     public int Position { get; private set; }
-    public int Depth => throw new NotImplementedException();
+    public int Depth { get; private set; }
 }
