@@ -55,4 +55,34 @@ public class SubmarineTest
         // Assert
         this._submarine.Aim.Should().Be(-value);
     }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void ExecuteCommand_ShouldIncreasePosition_GivenForwardCommand(int value)
+    {
+        this._submarine.ExecuteCommand($"forward {value}");
+
+        this._submarine.Position.Should().Be(value);
+    }
+
+    [Fact]
+    public void ExecuteCommand_ShouldIncreasePositionByValue_GivenNotZeroDefaultPosition()
+    {
+        // Arrange
+        var commandValues = this._fixture.CreateMany<int>().ToList();
+        commandValues.ForEach(value => this._submarine.ExecuteCommand($"forward {value}"));
+
+        // Act
+        this._submarine.ExecuteCommand($"forward 1");
+
+        // Assert
+        this._submarine.Position.Should().Be(commandValues.Sum() + 1);
+    }
+
+    //[Fact]
+    //public void ExecuteCommand_ShouldIncreasePositionAndDepth_GivenForwardCommand()
+    //{
+
+    //}
 }

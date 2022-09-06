@@ -5,17 +5,33 @@ public class Submarine : ISubmarine
     public void ExecuteCommand(string command)
     {
         var commandParts = command.Split(' ');
-        if (commandParts[0].Equals("down"))
+        var commandType = commandParts[0];
+        var commandValue = int.Parse(commandParts[1]);
+        if (IsDownCommand(commandType))
         {
-            Aim += int.Parse(commandParts[1]);
+            Aim += commandValue;
+        }
+        else if (IsForwardCommand(commandType))
+        {
+            Position += commandValue;
         }
         else
         {
-            Aim -= int.Parse(commandParts[1]);    
+            Aim -= commandValue;    
         }
     }
 
+    private static bool IsForwardCommand(string commandType)
+    {
+        return commandType.Equals("forward");
+    }
+
+    private static bool IsDownCommand(string commandType)
+    {
+        return commandType.Equals("down");
+    }
+
     public int Aim { get; private set; }
-    public int Position => throw new NotImplementedException();
+    public int Position { get; private set; }
     public int Depth => throw new NotImplementedException();
 }
