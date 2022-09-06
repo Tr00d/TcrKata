@@ -7,13 +7,13 @@ namespace TcrKata.Domain.Tests;
 
 public class SubmarineTest
 {
-    private readonly Submarine submarine;
-    private readonly Fixture fixture;
+    private readonly Submarine _submarine;
+    private readonly Fixture _fixture;
     
     public SubmarineTest()
     {
-        this.submarine = new Submarine();
-        this.fixture = new Fixture();
+        this._submarine = new Submarine();
+        this._fixture = new Fixture();
     }
 
     [Theory]
@@ -23,21 +23,36 @@ public class SubmarineTest
     public void ExecuteCommand_ShouldIncreaseAimByValue_GivenCommandIsDownWithAValue(int value)
     {
         // Act
-        this.submarine.ExecuteCommand($"down {value}");
-
+        this._submarine.ExecuteCommand($"down {value}");
+        
         // Assert
-        this.submarine.Aim.Should().Be(value);
+        this._submarine.Aim.Should().Be(value);
     }
 
     [Fact]
-    public void ExecuteCommand_ShouldIncreaseAimByValues_GivenMultipleDownCommands()
+    public void ExecuteCommand_ShouldIncreaseAimByValue_GivenNotZeroDefaultAim()
     {
-        var commandValues = this.fixture.CreateMany<int>();
-        foreach (int value in commandValues)
-        {
-            this.submarine.ExecuteCommand($"down {value}");
-        }
+        // Arrange
+        var commandValues = this._fixture.CreateMany<int>().ToList();
+        commandValues.ForEach(value => this._submarine.ExecuteCommand($"down {value}"));
 
-        this.submarine.Aim.Should().Be(commandValues.Sum());
+        // Act
+        this._submarine.ExecuteCommand($"down 1");
+
+        // Assert
+        this._submarine.Aim.Should().Be(commandValues.Sum() + 1);
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    public void ExecuteCommand_ShouldDecreaseAimByValue_GivenCommandIsUpWithAValue(int value)
+    {
+        // Act
+        this._submarine.ExecuteCommand($"up {value}");
+        
+        // Assert
+        this._submarine.Aim.Should().Be(-value);
     }
 }
