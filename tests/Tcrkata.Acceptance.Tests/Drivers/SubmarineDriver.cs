@@ -19,5 +19,5 @@ public class SubmarineDriver
     public int GetSubmarineAim() => this.context.Submarine.Aim;
     public int GetSubmarinePosition() => this.context.Submarine.Position;
     public int GetFinalValue() => this.context.Submarine.Position * this.context.Submarine.Depth;
-    public void SendCommand(string command) => this.context.Submarine.ExecuteCommand(command);
+    public void SendCommand(string command) => this.context.Submarine = this.context.Submarine.ExecuteCommand(command);
 }

@@ -9,5 +9,5 @@ public class SubmarineContext
         this.Submarine = new Submarine();
     }
 
-    public Submarine Submarine { get; }
+    public ISubmarine Submarine { get; set; }
 }

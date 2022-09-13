@@ -7,5 +7,5 @@ public interface ISubmarine
     int Position { get; }
 
     int Depth { get; }
-    void ExecuteCommand(string command);
+    ISubmarine ExecuteCommand(string command);
 }

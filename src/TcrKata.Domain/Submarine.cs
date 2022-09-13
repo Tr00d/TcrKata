@@ -4,7 +4,7 @@ namespace TcrKata.Domain;
 
 public class Submarine : ISubmarine
 {
-    private SubmarineState state;
+    private readonly SubmarineState state;
     private readonly CommandFactory factory;
 
     public Submarine()
@@ -12,10 +12,19 @@ public class Submarine : ISubmarine
         this.state = new SubmarineState(default, default, default);
         this.factory = new CommandFactory();
     }
-    
-    public void ExecuteCommand(string command) => this.state = this.factory
-        .Parse(command)
-        .TransformState(this.state);
+
+    private Submarine(SubmarineState submarineState)
+    :this()
+    {
+        this.state = submarineState;
+    }
+
+    public ISubmarine ExecuteCommand(string command) =>
+        this.factory
+            .Parse(command)
+            .Match(_ => this, this.MoveSubmarine);
+
+    private Submarine MoveSubmarine(ISubmarineCommand success) => new(success.TransformState(this.state));
 
     public int Aim => this.state.Aim;
     public int Position => this.state.Position;
